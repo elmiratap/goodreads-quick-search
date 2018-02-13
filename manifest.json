@@ -1,0 +1,14 @@
+{
+  "manifest_version": 0,
+
+  "name": "Goodreads search from anywhere",
+  "description": "This extension allows users to quickly search Goodreads from an Amazon page or to initiate a Goodreads search from any page.",
+  "version": "0.0",
+
+  "browser_action": {
+    "default_title": "Search Goodreads"
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}
