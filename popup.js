@@ -49,18 +49,50 @@ function abbreviateTitle(fullTitle) {
   }
 }
 
+function pasteQueryIntoTextbox(query) {
+  document.getElementById("goodreadsQueryTextbox").value = query;
+}
+
+function searchGoodreads(tab) {
+  var goodreadsURL = "https://www.goodreads.com/search?q=";
+  // https://www.goodreads.com/search?q=The+Second+Chance+Cafe+alison+kent
+  var queryTextbox = document.getElementById("goodreadsQueryTextbox");
+  var query = queryTextbox.value;
+  if (query !== "") {
+    console.log(query);
+    goodreadsURL += query.replace(/ /g, '+');
+  }
+  if (tab === "current") {
+    chrome.tabs.update({url: goodreadsURL});
+  } else if (tab === "new") {
+    chrome.tabs.create({url: goodreadsURL});
+  }
+}
+
+
 // This extension performs a search on Goodreads in two ways:
 // 1. Gathering the title and author of a book from the open Amazon page
 // 2. Allowing the user to enter a query of their own
 document.addEventListener('DOMContentLoaded', () => {
+  var currentTabButton = document.getElementById("currentTabButton");
+  currentTabButton.addEventListener('click', function() {
+    searchGoodreads("current");
+  });
+
+  var newTabButton = document.getElementById("newTabButton");
+  newTabButton.addEventListener('click', function() {
+    searchGoodreads("new");
+  });
+
   currentTabOnAmazon((onAmazon) => {
     if (onAmazon) {
       getBookTitleAndAuthorFromAmazon((titleAndAuthor) => {
         var query = `${abbreviateTitle(titleAndAuthor.title)} ${titleAndAuthor.author}`;
         console.log(query);
+        pasteQueryIntoTextbox(query);
       });
     } else {
-      alert("This tab is NOT on Amazon!");
+      // alert("This tab is NOT on Amazon!");
     }
   });
 });
