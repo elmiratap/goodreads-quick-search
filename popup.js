@@ -63,7 +63,7 @@ function searchGoodreads(tab) {
   console.log(query);
   if (query !== "") {
     console.log(query);
-    goodreadsURL += query.replace(/ /g, '+');
+    goodreadsURL += encodeURIComponent(query).replace(/%20/g, '+');
     if (tab === "current") {
       chrome.tabs.update({url: goodreadsURL});
     } else if (tab === "new") {
