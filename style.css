@@ -1,0 +1,21 @@
+body {
+  margin: 10px;
+  white-space: nowrap;
+}
+
+h1 {
+  font-size: 15px;
+}
+
+.search_box_elements {
+  /*align-items: center;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.search_buttons {
+ display: flex;
+ justify-content: space-between;
+ 
+}
