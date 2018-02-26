@@ -8,7 +8,6 @@ h1 {
 }
 
 .search_box_elements {
-  /*align-items: center;*/
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,5 +16,4 @@ h1 {
 .search_buttons {
  display: flex;
  justify-content: space-between;
- 
 }

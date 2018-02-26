@@ -21,14 +21,6 @@ function currentTabOnAmazon(callback) {
 function getBookTitleAndAuthorFromAmazon(callback) {
   var bookTitleSelector = "document.querySelector(\"[id$='roductTitle']\").innerHTML";
   var authorSelector = "document.querySelector(\"[class$='contributorNameID']\").innerHTML";
-  // console.log(${bookTitleSelector});
-  // console.log(${authorSelector});
-  //
-  // var authorSelector = "document.querySelector(\"[class$='contributorNameID']\").innerHTML";
-  // console.log(${bookTitleSelector});
-  // console.log(${authorSelector});
-
-  // var script = `var bookTitleSelector = ${bookTitleSelector}; var authorSelector = ${authorSelector}; return {bookTitleSelector: bookTitleSelector, authorSelector: authorSelector};`;
   chrome.tabs.executeScript({
     code: `(function() {
       var bookTitleSelector = ${bookTitleSelector};
@@ -74,9 +66,6 @@ function searchGoodreads(tab) {
   }
 }
 
-// This extension performs a search on Goodreads in two ways:
-// 1. Gathering the title and author of a book from the open Amazon page
-// 2. Allowing the user to enter a query of their own
 document.addEventListener('DOMContentLoaded', () => {
   console.log(document.getElementById("goodreadsQueryTextbox").value);
   var currentTabButton = document.getElementById("currentTabButton");
