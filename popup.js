@@ -36,11 +36,14 @@ function getBookTitleAndAuthorFromAmazon(callback) {
 function abbreviateTitle(fullTitle) {
   for (var i=0; i<fullTitle.length; i++) {
     if (fullTitle.charAt(i) === ':') {
+    	console.log("fullTitle.charAt(i) === ':'");
       return fullTitle.substring(0, i);
     } else if (fullTitle.charAt(i) == '(') {
+    	console.log("fullTitle.charAt(i) == '('");
       return fullTitle.substring(0, i-1); // Remove extra space at the end
     }
   }
+  return fullTitle;
 }
 
 function pasteQueryIntoTextbox(query) {
@@ -83,10 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
       getBookTitleAndAuthorFromAmazon((titleAndAuthor) => {
         if (titleAndAuthor !== null) {
           var query = `${abbreviateTitle(titleAndAuthor.title)} ${titleAndAuthor.author}`;
-          console.log(query);
           pasteQueryIntoTextbox(query);
         } else {
-          console.log("title and author are null");
+          console.log("title and author pair is null");
         }
       });
     }
